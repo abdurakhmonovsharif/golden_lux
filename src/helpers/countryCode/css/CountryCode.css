@@ -1,0 +1,119 @@
+.select-box {
+    position: relative;
+    font-size: 18px;
+    color: #60666d;
+    width: 100%;
+}
+
+
+.select-box__current {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+
+.select-box__current:focus+.select-box__list {
+    opacity: 1;
+    animation-name: none;
+}
+
+.select-box__current:focus+.select-box__list .select-box__option {
+    cursor: pointer;
+}
+
+.select-box__current:focus .select-box__icon {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.select-box__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 17px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+}
+
+.select-box__value {
+    display: flex;
+}
+
+.select-box__input {
+    display: none;
+}
+
+.select-box__input:checked+.select-box__input-text {
+    display: block;
+}
+
+.select-box__input-text {
+    display: none;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    inline-size: 80%;
+    font-size: 15px;
+    color: #222;
+    line-height: 20px;
+    letter-spacing: 0.32px;
+    background-color: #fff;
+}
+
+.select-box__list {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    padding: 0;
+    list-style: none;
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    opacity: 0;
+    height: 300px;
+    font-size: 15px;
+    overflow-y: auto;
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Style the scrollbar */
+.select-box__list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.select-box__list::-webkit-scrollbar-thumb {
+    background-color: #222;
+}
+
+.select-box__list::-webkit-scrollbar-track {
+    background-color: #f6f6f6;
+    border-end-end-radius: 8px;
+}
+
+.select-box__option {
+    display: block;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.select-box__option:hover,
+.select-box__option:focus {
+    color: #363636;
+    background-color: #f6f6f6;
+}
+
+@keyframes HideList {
+    from {
+        transform: scaleY(1);
+    }
+
+    to {
+        transform: scaleY(0);
+    }
+}
