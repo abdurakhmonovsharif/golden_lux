@@ -73,6 +73,7 @@
     opacity: 0;
     height: 300px;
     font-size: 15px;
+    z-index: 999;
     overflow-y: auto;
     animation-name: HideList;
     animation-duration: 0.5s;

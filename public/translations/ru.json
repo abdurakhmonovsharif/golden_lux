@@ -20,5 +20,16 @@
         "email_text": "продолжить с электронная почта",
         "phone_text": "продолжить с телефоном",
         "Continue": "продолжить"
+    },
+    "Register": {
+        "title": "Зарегистрироваться",
+        "fullname_input_placeholder": "Имя и Фамилия",
+        "fullname_input_bottom_text": "Убедитесь, что оно соответствует имени в вашем удостоверении личности.",
+        "email_input_bottom_text": "Мы отправим вам подтверждение поездки и квитанции по электронной почте.",
+        "password_confirm_placeholder": "Повторите пароль",
+        "form_validation": {
+            "fullname_required": "Требуется указать полное имя",
+            "password_confirm_message": "Требуется повторить пароль"
+        }
     }
 }

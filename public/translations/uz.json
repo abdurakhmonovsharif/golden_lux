@@ -12,6 +12,7 @@
             "phone_number_message": "Iltimos, haqiqiy telefon raqamini kiriting",
             "password_message": "Minimal uzunlik 8 belgi",
             "password_required": "Parol talab qilinadi",
+            "password_confirm": "Parolni qayta kiriting",
             "email_required": "Elektron pochta talab qilinadi",
             "email_message": "Iltimos, haqiqiy elektron pochtangizni kiriting"
         },
@@ -20,5 +21,16 @@
         "email_text": "Elektron Pochta bilan davom etish",
         "phone_text": "Telefon bilan davom etish",
         "Continue": "davom etish"
+    },
+    "Register": {
+        "title": "Ro'yxatdan o'tish",
+        "fullname_input_placeholder": "Ism va Familiya",
+        "fullname_input_bottom_text": "Ismingizni shaxsiy hujjatingizdagi nomingiz bilan bir xil kiriting.",
+        "email_input_bottom_text": "Sizga sayohat tasdiqini va kassalarni elektron pochta orqali yuboramiz.",
+        "password_confirm_placeholder": "Parolni takrorlang",
+        "form_validation": {
+            "fullname_required": "To'liq ism familiyangizni kiriting",
+            "password_confirm_message": "Parolni takrorlash shart"
+        }
     }
 }

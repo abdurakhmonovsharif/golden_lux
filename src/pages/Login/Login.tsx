@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
     const { t } = useTranslation();
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const { handleSubmit, register, setValue, formState: { errors }, } = useForm()
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isPassword, setIsPassword] = useState(false);

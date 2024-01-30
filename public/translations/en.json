@@ -12,6 +12,7 @@
             "phone_number_message": "Please enter a valid phone number",
             "password_message": "Minimum length is 8",
             "password_required": "Password is required",
+            "password_confirm": "Repeat password",
             "email_required": "Email is required",
             "email_message:": "Please enter a valid email"
         },
@@ -20,5 +21,16 @@
         "email_text": "continue with Email",
         "phone_text": "continue with Phone",
         "Continue": "continue"
+    },
+    "Register": {
+        "title": "Register",
+        "fullname_input_placeholder": "Full Name",
+        "fullname_input_bottom_text": "Make sure it matches the name on your identification.",
+        "email_input_bottom_text": "We send you trip confirmation and receipts via email.",
+        "password_confirm_placeholder": "Confirm Password",
+        "form_validation": {
+            "fullname_required": "Full name is required",
+            "password_confirm_message": "Password confirmation is required"
+        }
     }
 }
