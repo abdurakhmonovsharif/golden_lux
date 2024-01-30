@@ -1,0 +1,24 @@
+{
+    "Login": {
+        "title": "Log in",
+        "paragraph": "Welcome to GoldenLux",
+        "select_label": "Country/Region",
+        "input_placeholder": "Phone number",
+        "input_bottom_text": "We’ll call or text you to confirm your number. Standard message and data rates apply",
+        "email_placeholder": "Email",
+        "password_placeholder": "Password",
+        "form_validation": {
+            "phone_number_required": "Phone Number is required",
+            "phone_number_message": "Please enter a valid phone number",
+            "password_message": "Minimum length is 8",
+            "password_required": "Password is required",
+            "email_required": "Email is required",
+            "email_message:": "Please enter a valid email"
+        },
+        "or": "or",
+        "google_text": "continue with Google",
+        "email_text": "continue with Email",
+        "phone_text": "continue with Phone",
+        "Continue": "continue"
+    }
+}

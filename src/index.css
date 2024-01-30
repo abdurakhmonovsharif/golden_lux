@@ -24,7 +24,3 @@ input[type=number] {
   border-radius: 8px;
   background: linear-gradient(90deg, #10D563 0%, #10D563 35.42%, #10D563 100%), #10D563;
 }
-
-/* [data-slot="input-wrapper"] {
-  border: 1px solid #E5E7EB;
-} */

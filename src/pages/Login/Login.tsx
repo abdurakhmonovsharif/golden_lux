@@ -1,18 +1,40 @@
 import { useState } from "react";
+import { Input } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 import CountryCode from "../../helpers/countryCode/CountryCode";
+// icons
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoCallOutline } from "react-icons/io5";
-import { Input } from "@nextui-org/react";
-import { useTranslation } from "react-i18next";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+import Loading from "../../helpers/Loading/Loading";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
     const { t } = useTranslation();
+    const navigate=useNavigate()
+    const { handleSubmit, register, setValue, formState: { errors }, } = useForm()
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [isPassword, setIsPassword] = useState(false);
     const [isPhoneType, setIsPhoneType] = useState(true);
-
+    const [isLoading, setIsLoading] = useState(false);
+    const handleOnSubmit = (data: any) => {
+        console.log(data);
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+            navigate("/sign-up")
+        }, 2000)
+    }
+    const handleCountryCodeChange = (code: string) => {
+        setPhoneNumber("");
+        setValue("phone_number", "");
+        setPhoneNumber(code);
+    };
     return (
-        <div className="max-w-dw mx-auto h-screen flex items-center ">
-            <div className="w-[568px] shadow-md border border-black/10 m-auto rounded-lg p-5">
+        <div className="max-w-dw mx-auto h-screen flex items-center p-5">
+            <div className="w-[568px] max-h-[559px] shadow-md border border-black/10 m-auto rounded-lg p-5">
                 <div className="pb-6 text-center">
                     <span className="text-g_text_color font-semibold text-xl">
                         {t("Login.title")}
@@ -20,44 +42,85 @@ const Login = () => {
                 </div>
                 <span className="text-g_text_color font-normal text-[20px] tracking-[0.44px] leading-[118.182%]">{t("Login.paragraph")}
                 </span>
-                <div className="space-y-6 mt-2 w-full">
-                    <form className="w-full">
-                        <div className="py-4 w-full">
+                <div className="space-y-6 mt-2 w-full ">
+                    <form className="w-full" onSubmit={handleSubmit(handleOnSubmit)}>
+                        <div className="py-4 w-full ">
                             {/*Phone number */}
                             {
                                 isPhoneType ?
                                     <div>
-                                        <CountryCode label={t("Login.select_label")} onChange={(code) => setPhoneNumber(code)} />
+                                        <CountryCode label={t("Login.select_label")} onChange={handleCountryCodeChange} />
                                         <input
-                                            defaultValue={phoneNumber}
+                                            value={phoneNumber}
+                                            onInput={({ currentTarget }) => {
+                                                const inputValue = currentTarget.value;
+                                                const cleanedValue = inputValue.replace(/\D/g, '');
+                                                const formattedPhoneNumber = cleanedValue.length > 0 ? `+${cleanedValue}` : '';
+                                                setPhoneNumber(formattedPhoneNumber);
+                                            }}
                                             type="text"
+                                            {...register('phone_number', {
+                                                required: t("Login.form_validation.phone_number_required"),
+                                                pattern: {
+                                                    value: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
+                                                    message: t("Login.form_validation.phone_number_message"),
+                                                },
+                                            })}
                                             placeholder={t("Login.input_placeholder")}
                                             className="w-full text-sm p-3 py-4 border outline-none rounded-b-lg border-t-0"
                                         />
+                                        <p className="text-tiny text-danger p-1">{errors.phone_number && errors.phone_number.message as string}</p>
                                         <p className="p-1 text-[#717171] w-full font-Abhaya text-xs leading-4 tracking-[0.144px]">{t("Login.input_bottom_text")} <u className="text-g_text_color font-bold">Privacy Policy</u></p>
                                     </div>
                                     :
                                     // Email 
-                                    <div className="w-fully space-y-[14px]">
+                                    <div className="w-full space-y-3">
                                         <Input
-                                            type="text"
+                                            type="email"
+                                            {...register('email', {
+                                                required: t("Login.form_validation.email_required"),
+                                                pattern: {
+                                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                                    message: t("Login.form_validation.email_message"),
+                                                },
+                                            })}
                                             label={t("Login.email_placeholder")}
+                                            errorMessage={errors.email && errors.email.message as string}
                                             variant="flat"
                                             classNames={{ base: "bg-white text-base", inputWrapper: " border bg-white !rounded-lg  hover:!bg-white focus:!bg-white focus-within:!bg-white", input: "!text-base !text-g_text_color" }}
                                         />
                                         <Input
-                                            type="text"
+                                            type={isPassword ? "text" : "password"}
                                             label={t("Login.password_placeholder")}
                                             variant="flat"
+                                            {...register("password", {
+                                                required: t("Login.form_validation.password_required"),
+                                                minLength: {
+                                                    value: 8,
+                                                    message: t("Login.form_validation.password_message"),
+                                                },
+                                            })}
                                             endContent={
-                                                <u className="text-xs mb-2 cursor-pointer font-medium">Show</u>
+                                                <button type="button" className="mb-2" onClick={() => setIsPassword(!isPassword)}>
+                                                    {isPassword ?
+                                                        <FiEyeOff className="text-lg text-g_text_color" />
+                                                        :
+                                                        <FiEye className="text-lg text-g_text_color" />}
+                                                </button>
                                             }
+                                            errorMessage={errors.password && errors.password.message as string}
                                             classNames={{ base: "bg-white text-base ", inputWrapper: " border bg-white !rounded-lg  hover:!bg-white focus:!bg-white focus-within:!bg-white", input: "!text-base !text-g_text_color" }}
                                         />
                                     </div>
                             }
                         </div>
-                        <button className="sign_button text-white w-full">{t("Login.Continue")}</button>
+                        <button className="sign_button text-white w-full h-[52px]">
+                            {
+                                isLoading ?
+                                    <Loading /> :
+                                    t("Login.Continue")
+                            }
+                        </button>
                     </form>
                     <div className='flex items-center w-full justify-between px-1'>
                         <hr className='w-[43%] bg-[#DBDBDB]' />

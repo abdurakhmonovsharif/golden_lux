@@ -3,26 +3,28 @@ import './css/CountryCode.css'
 import React, { useState } from 'react';
 interface CountryCodeProps {
     onChange: (code: string) => void,
-    label:string
+    label: string
 }
 interface CountryType {
     name: string;
     dial_code: string;
     code: string;
 }
-const CountryCode: React.FC<CountryCodeProps> = ({ onChange,label }) => {
+
+const CountryCode: React.FC<CountryCodeProps> = ({ onChange, label }) => {
     const [selectedCountry, setSelectedCountry] = useState<CountryType | null>(countryData[0]);
 
     const handleInputChange = (code: string) => {
         onChange(code);
-        setSelectedCountry(countryData.find((el) => el.dial_code == code) || null);
-    }
+        setSelectedCountry(countryData.find((el) => el.dial_code === code) || null);
+    };
+
     return (
         <div className="select-box border rounded-tl-lg rounded-tr-lg">
             <div className="select-box__current pb-2.5 px-3" tabIndex={1}>
                 <span className='text-xs tracking-[0.24px] font-normal'>{label}</span>
                 {countryData.map((option, index) => (
-                    <div className="select-box__value" key={index}>
+                    <div className="select-box__value" key={index} id={`countryItem_${index}`}>
                         <input
                             className="select-box__input"
                             type="radio"
@@ -47,7 +49,7 @@ const CountryCode: React.FC<CountryCodeProps> = ({ onChange,label }) => {
             <ul className="select-box__list">
                 {countryData.map((option, index) => (
                     <li key={index}>
-                        <label className="select-box__option text-g_text_color" htmlFor={index.toString()} aria-hidden>
+                        <label className="select-box__option text-g_text_color" htmlFor={`countryItem_${index}`} aria-hidden>
                             {option.name} ({option.dial_code})
                         </label>
                     </li>
@@ -56,4 +58,5 @@ const CountryCode: React.FC<CountryCodeProps> = ({ onChange,label }) => {
         </div>
     );
 };
-export default CountryCode
+
+export default CountryCode;

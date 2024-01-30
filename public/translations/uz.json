@@ -1,0 +1,24 @@
+{
+    "Login": {
+        "title": "Kirish",
+        "paragraph": "GoldenLuxga Xush Kelibsiz",
+        "select_label": "Mamlakat/Mintaqa",
+        "input_placeholder": "Telefon Raqami",
+        "input_bottom_text": "Telefon raqamingizni tasdiqlash uchun sizni qo‘ng‘iroq qilamiz yoki SMS jo‘natamiz. Standart xabar va ma’lumot tariflari amal qiladi.",
+        "email_placeholder": "Elektron Pochta",
+        "password_placeholder": "Parol",
+        "form_validation": {
+            "phone_number_required": "Telefon raqami talab qilinadi",
+            "phone_number_message": "Iltimos, haqiqiy telefon raqamini kiriting",
+            "password_message": "Minimal uzunlik 8 belgi",
+            "password_required": "Parol talab qilinadi",
+            "email_required": "Elektron pochta talab qilinadi",
+            "email_message": "Iltimos, haqiqiy elektron pochtangizni kiriting"
+        },
+        "or": "yoki",
+        "google_text": "Google bilan davom etish",
+        "email_text": "Elektron Pochta bilan davom etish",
+        "phone_text": "Telefon bilan davom etish",
+        "Continue": "davom etish"
+    }
+}

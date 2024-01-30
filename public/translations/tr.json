@@ -1,0 +1,24 @@
+{
+    "Login": {
+        "title": "Giriş Yap",
+        "paragraph": "GoldenLux'a Hoş Geldiniz",
+        "select_label": "Ülke/Bölge",
+        "input_placeholder": "Telefon Numarası",
+        "input_bottom_text": "Numaranızı doğrulamak için sizi arayacağız veya mesaj atacağız. Standart mesaj ve veri tarifeleri geçerlidir.",
+        "email_placeholder": "E-posta",
+        "password_placeholder": "Şifre",
+        "form_validation": {
+            "phone_number_required": "Telefon Numarası gereklidir",
+            "phone_number_message": "Lütfen geçerli bir telefon numarası girin",
+            "password_message": "Minimum uzunluk 8 karakter",
+            "password_required": "Şifre gerekli",
+            "email_required": "E-posta gerekli",
+            "email_message": "Lütfen geçerli bir e-posta adresi girin"
+        },
+        "or": "veya",
+        "google_text": "Google ile devam et",
+        "email_text": "E-posta ile devam et",
+        "phone_text": "Telefon ile devam et",
+        "Continue": "devam et"
+    }
+}
