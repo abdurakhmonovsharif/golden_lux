@@ -24,7 +24,7 @@ const SignUp = () => {
         setIsLoading(true)
         setTimeout(() => {
             setIsLoading(false)
-            navigate("/sign-up")
+            navigate("/login")
         }, 2000)
     }
     const handleCountryCodeChange = (code: string) => {
