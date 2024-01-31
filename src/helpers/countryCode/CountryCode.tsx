@@ -3,7 +3,7 @@ import './css/CountryCode.css'
 import React, { useState } from 'react';
 interface CountryCodeProps {
     onChange: (code: string) => void,
-    label: string
+    label: string,
 }
 interface CountryType {
     name: string;
@@ -18,7 +18,7 @@ const CountryCode: React.FC<CountryCodeProps> = ({ onChange, label }) => {
         setSelectedCountry(countryData.find((el) => el.dial_code == code) || null);
     }
     return (
-        <div className="select-box border rounded-tl-lg rounded-tr-lg">
+        <div className={`select-box border  rounded-tl-lg rounded-tr-lg`}>
             <div className="select-box__current pb-2.5 px-3" tabIndex={1}>
                 <span className='text-xs tracking-[0.24px] font-normal'>{label}</span>
                 {countryData.map((option, index) => (

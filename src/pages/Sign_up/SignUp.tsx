@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 import CountryCode from "../../helpers/countryCode/CountryCode";
-// icons
-import { FcGoogle } from "react-icons/fc";
-import { HiOutlineMail } from "react-icons/hi";
-import { IoCallOutline } from "react-icons/io5";
-import { FiEye } from "react-icons/fi";
-import { FiEyeOff } from "react-icons/fi";
 import Loading from "../../helpers/Loading/Loading";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+// icons
+import { FcGoogle } from "react-icons/fc";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 const SignUp = () => {
     const { t } = useTranslation();
     const navigate = useNavigate()
@@ -28,20 +26,25 @@ const SignUp = () => {
         }, 2000)
     }
     const handleCountryCodeChange = (code: string) => {
-        console.log(code);
         setPhoneNumber("");
         setValue("phone_number", "");
         setPhoneNumber(code);
     };
+    const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
+        const inputValue = e.currentTarget.value;
+        const cleanedValue = inputValue.replace(/\D/g, '');
+        const formattedPhoneNumber = cleanedValue.length > 0 ? `+${cleanedValue}` : '';
+        setPhoneNumber(formattedPhoneNumber);
+    };
     return (
-        <div className="max-w-dw mx-auto h-screen flex items-center p-5">
-            <div className="w-[568px]  shadow-md border border-black/10 m-auto rounded-lg p-5">
+        <div className="max-w-dw mx-auto h-screen flex items-center lg:p-5 p-2">
+            <div className="lg:w-[568px]  shadow-md border border-black/10 m-auto rounded-lg p-5">
                 <div className="pb-6 text-center">
                     <span className="text-g_text_color font-semibold text-xl">
                         {t("Register.title")}
                     </span>
                 </div>
-                <span className="text-g_text_color font-normal text-[20px] tracking-[0.44px] leading-[118.182%]">{t("Login.paragraph")}
+                <span className="text-g_text_color font-medium text-[20px] tracking-[0.44px] leading-[118.182%]">{t("Login.paragraph")}
                 </span>
                 <div className="space-y-4 mt-2 w-full ">
                     <form className="w-full" onSubmit={handleSubmit(handleOnSubmit)}>
@@ -82,12 +85,8 @@ const SignUp = () => {
                                     <CountryCode label={t("Login.select_label")} onChange={handleCountryCodeChange} />
                                     <input
                                         value={phoneNumber}
-                                        onInput={({ currentTarget }) => {
-                                            const inputValue = currentTarget.value;
-                                            const cleanedValue = inputValue.replace(/\D/g, '');
-                                            const formattedPhoneNumber = cleanedValue.length > 0 ? `+${cleanedValue}` : '';
-                                            setPhoneNumber(formattedPhoneNumber);
-                                        }}
+                                        maxLength={15}
+                                        onInput={handleInputChange}
                                         type="text"
                                         {...register('phone_number', {
                                             required: t("Login.form_validation.phone_number_required"),
@@ -150,7 +149,7 @@ const SignUp = () => {
                                         </button>
                                     }
                                     errorMessage={errors.confirm_password && errors.confirm_password.message as string}
-                                    classNames={{ base: "bg-white text-base ", inputWrapper: `border ${confirmPassword ? "border-[#F31260]" : ""} bg-white !rounded-lg  hover:!bg-white focus:!bg-white focus-within:!bg-white`, input: "!text-base !text-g_text_color" }}
+                                    classNames={{ base: "bg-white text-base focus-within:!outline-red-500", inputWrapper: `border  ${confirmPassword ? "border-[#F31260]" : ""} bg-white !rounded-lg  hover:!bg-white focus-within:!bg-white `, input: "!text-base !text-g_text_color" }}
                                 />
                             </div>
                         </div>
@@ -167,13 +166,13 @@ const SignUp = () => {
                         <span className='font-normal text-xs leading-4 tracking-[0.48px] text-[#737373]'>{t("Login.or")}</span>
                         <hr className='w-[43%] bg-[#DBDBDB]' />
                     </div>
-                        <button className="py-[14px] flex items-center  px-6 text-g_text_color w-full border border-g_text_color rounded-lg">
-                            <FcGoogle className="text-xl" />
-                            <span
-                                className="w-full text-center mr-2">
-                                {t("Login.google_text")}
-                            </span>
-                        </button>
+                    <button className="py-[14px] flex items-center  px-6 text-g_text_color w-full border border-g_text_color rounded-lg">
+                        <FcGoogle className="text-xl" />
+                        <span
+                            className="w-full text-center mr-2">
+                            {t("Login.google_text")}
+                        </span>
+                    </button>
                 </div>
             </div >
         </div >

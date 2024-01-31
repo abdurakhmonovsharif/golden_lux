@@ -17,10 +17,10 @@
             "email_message:": "Please enter a valid email"
         },
         "or": "or",
-        "google_text": "continue with Google",
-        "email_text": "continue with Email",
-        "phone_text": "continue with Phone",
-        "Continue": "continue"
+        "google_text": "Continue with Google",
+        "email_text": "Continue with Email",
+        "phone_text": "Continue with Phone",
+        "Continue": "Continue"
     },
     "Register": {
         "title": "Register",
